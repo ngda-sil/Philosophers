@@ -50,6 +50,11 @@ int	init_philo(t_data *a)
 	int	i;
 
 	a->p = ft_calloc(a->nb_philo, sizeof(t_philo));
+	if (!a->p)
+	{
+		printf("%s\n", INIT);
+		return (1);
+	}
 	i =  -1;
 	while (++i < a->nb_philo)
 	{
