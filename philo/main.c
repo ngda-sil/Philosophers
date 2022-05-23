@@ -12,27 +12,6 @@
 
 #include "philo.h"
 
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	if (!s)
-		return ;
-	while (*s)
-		ft_putchar_fd(*s++, fd);
-}
-
-void	ft_putendl_fd(char *s, int fd)
-{	
-	if (!s)
-		return ;
-	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', fd);
-}
-
 int	main(int ac, char **av)
 {
 	t_data	a;
@@ -42,8 +21,8 @@ int	main(int ac, char **av)
 		ft_putendl_fd(ARGS, 2);
 		return (1);
 	}
-	/*init_data();
-	init_philo();
+	init_data(ac, av, &a);
+	/*init_philo();
 	start_sim();*/
 	return (0);
 }

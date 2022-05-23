@@ -36,8 +36,13 @@ typedef struct s_data
 	int	nb_m_eat;
 }	t_data;
 
-// error
-int	check_args(int ac, char **av, t_data *a);
-
+// init
+int		check_args(int ac, char **av);
+void	init_data(int ac, char **av, t_data *a);
+//utils
+int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
+//utils2
+void	ft_putendl_fd(char *s, int fd);
 
 #endif
