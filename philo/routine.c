@@ -11,9 +11,9 @@
 	i = 0;
 	while (++i < a->nb_philo)
 		pthread_join(&philo[i], NULL);
-}*/
+}
 
 void	start_sim(t_data *a)
 {
 	init_thread();
-}
+}*/
