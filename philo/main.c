@@ -14,9 +14,15 @@
 
 int	main(int ac, char **av)
 {
-	check_args();
-	init_data();
+	t_data	a;
+
+	if (!check_args(ac, av, &a));
+	{
+		ft_putstr_fd(ARGS, 2);
+		return (1);
+	}
+	/*init_data();
 	init_philo();
-	start_sim();
+	start_sim();*/
 	return (0);
 }

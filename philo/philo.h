@@ -21,6 +21,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+# define ARGS "./philo nb_philo time_to_die time_to_eat time_to_sleep [nb_of_times_each_philo_must_eat]" 
 typedef struct s_philo
 {
 	int		nb_forks;
@@ -34,5 +35,9 @@ typedef struct s_data
 	int	t_sleep;
 	int	nb_m_eat;
 }	t_data;
+
+// error
+int	check_args(int ac, char **av, t_data *a);
+
 
 #endif
