@@ -6,7 +6,7 @@
 /*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:38:51 by tracy             #+#    #+#             */
-/*   Updated: 2022/05/23 18:58:40 by tracy            ###   ########.fr       */
+/*   Updated: 2022/05/24 01:24:14 by tracy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	init_data(ac, av, &a);
-	/*init_philo();
-	start_sim();*/
+	if (init_philo(&a))
+	{
+		ft_putendl_fd(INIT, 2);
+		return (1);
+	}
+	start_sim(&a);
 	return (0);
 }

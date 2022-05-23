@@ -40,3 +40,23 @@ int	ft_atoi(const char *str)
 	}
 	return ((int)(sign * res));
 }
+
+void	ft_bzero(void *s, size_t n)
+{
+	char	*str;
+
+	str = s;
+	while (n-- > 0)
+		*str++ = '\0';
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*s;
+
+	s = malloc(size * count);
+	if (!s)
+		return (NULL);
+	ft_bzero(s, size * count);
+	return (s);
+}

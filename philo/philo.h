@@ -6,7 +6,7 @@
 /*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:31:59 by tracy             #+#    #+#             */
-/*   Updated: 2022/05/23 18:58:27 by tracy            ###   ########.fr       */
+/*   Updated: 2022/05/24 01:24:22 by tracy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,16 @@
 # include <unistd.h>
 
 # define ARGS "./philo nb_philo time_to_die time_to_eat time_to_sleep [nb_of_times_each_philo_must_eat]"
+# define INIT "Problem initializing philosophers." 
+
 typedef struct s_philo
 {
-	int		nb_forks;
+	int				id;
+	int				t_last_meal;
+	int				nb_meal;
+	bool			is_alive;
+	pthread_mutex_t	l_fork;
+	pthread_mutex_t	*r_fork;
 }	t_philo;
 
 typedef struct s_data
@@ -35,14 +42,19 @@ typedef struct s_data
 	int	t_eat;
 	int	t_sleep;
 	int	nb_m_eat;
+	t_philo	*p;
 }	t_data;
 
 // init
 int		check_args(int ac, char **av);
+int		init_philo(t_data *a);
 void	init_data(int ac, char **av, t_data *a);
+//routine
+void	start_sim(t_data *a);
 //utils
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
+void	*ft_calloc(size_t count, size_t size);
 //utils2
 void	ft_putendl_fd(char *s, int fd);
 
