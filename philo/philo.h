@@ -6,13 +6,14 @@
 /*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:31:59 by tracy             #+#    #+#             */
-/*   Updated: 2022/05/23 18:30:01 by tracy            ###   ########.fr       */
+/*   Updated: 2022/05/23 18:58:27 by tracy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <limits.h>
 # include <pthread.h>
 # include <stdbool.h>
 # include <stdio.h>

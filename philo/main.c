@@ -6,7 +6,7 @@
 /*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:38:51 by tracy             #+#    #+#             */
-/*   Updated: 2022/05/23 18:31:06 by tracy            ###   ########.fr       */
+/*   Updated: 2022/05/23 18:58:40 by tracy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int ac, char **av)
 {
 	t_data	a;
 
-	if (check_args(ac, av, &a))
+	if (check_args(ac, av))
 	{
 		ft_putendl_fd(ARGS, 2);
 		return (1);
