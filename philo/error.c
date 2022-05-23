@@ -9,16 +9,16 @@ int    check_args(int ac, char **av, t_data *a)
 {
     int i;
     int j;
-
-    if (ac != 5 || ac != 6)
+	
+    if (ac != 5 && ac != 6)
         return (1);
-    i = 0
+    i = 0;
     while (++i < ac)
     {
         j = -1;
-        while (av[++j])
-            if (ft_isdigit(av[i]))
+        while (av[i][++j])
+            if (!ft_isdigit(av[i][j]))
                 return (1);
-        
     }
+	return (0);
 }

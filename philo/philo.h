@@ -6,7 +6,7 @@
 /*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:31:59 by tracy             #+#    #+#             */
-/*   Updated: 2022/05/23 17:44:06 by tracy            ###   ########.fr       */
+/*   Updated: 2022/05/23 18:30:01 by tracy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define ARGS "./philo nb_philo time_to_die time_to_eat time_to_sleep [nb_of_times_each_philo_must_eat]" 
+# define ARGS "./philo nb_philo time_to_die time_to_eat time_to_sleep [nb_of_times_each_philo_must_eat]"
 typedef struct s_philo
 {
 	int		nb_forks;
