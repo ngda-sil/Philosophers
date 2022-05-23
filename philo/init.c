@@ -6,20 +6,14 @@ int    check_args(int ac, char **av)
     int j;
 	
     if (ac != 5 && ac != 6)
-       {
-			printf("%s\n", ARGS);
-			return (1);
-		}
+		return (1);
     i = 0;
     while (++i < ac)
     {
         j = -1;
         while (av[i][++j])
             if (!ft_isdigit(av[i][j]))
-            {
-				printf("%s\n", ARGS);
 				return (1);
-			}
     }
 	return (0);
 }
@@ -65,15 +59,9 @@ int	init_philo(t_data *a)
 		a->p[i].is_alive = true;
 		a->p[i].r_fork = malloc(sizeof(pthread_mutex_t));
 		if (!a->p[i].r_fork)
-		{
-			printf("%s\n", INIT);
 			return (1);
-		}
 		if (pthread_mutex_init(&a->p[i].l_fork, NULL))
-		{
-			printf("%s\n", INIT);
 			return (1);
-		}
 	}
 	find_r_fork(a->p, a->nb_philo);
 	return (0);

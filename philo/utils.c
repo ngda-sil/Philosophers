@@ -60,3 +60,9 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(s, size * count);
 	return (s);
 }
+
+int	str_error(char *s, int ret)
+{
+	printf("%s\n", s);
+	return (ret);
+}

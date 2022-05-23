@@ -6,7 +6,7 @@
 /*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:31:59 by tracy             #+#    #+#             */
-/*   Updated: 2022/05/24 01:24:22 by tracy            ###   ########.fr       */
+/*   Updated: 2022/05/24 01:53:41 by tracy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 void	*ft_calloc(size_t count, size_t size);
 //utils2
-void	ft_putendl_fd(char *s, int fd);
+int		str_error(char *s, int ret);
 
 #endif
