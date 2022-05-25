@@ -37,6 +37,7 @@ int	init_data(int ac, char **av, t_data *a)
 	a->t_eat = ft_atoi(av[3]);
 	a->t_sleep = ft_atoi(av[4]);
 	a->nb_m_eat = -1;
+	a->full = 0;
 	a->death = 0;
 	if (ac == 6)
 		a->nb_m_eat = ft_atoi(av[5]);
@@ -75,10 +76,11 @@ int	init_philo(t_data *a)
 		a->p[i].t_last_meal = 0;
 		a->p[i].nb_meal = 0;
 		a->p[i].is_alive = 0;
+		a->p[i].is_full = 0;
 		a->p[i].data = a;
-		a->p[i].r_fork = malloc(sizeof(pthread_mutex_t));
+		/*a->p[i].r_fork = malloc(sizeof(pthread_mutex_t));
 		if (!a->p[i].r_fork)
-			return (1);
+			return (1);*/
 		if (pthread_mutex_init(&a->p[i].l_fork, NULL))
 			return (1);
 	}

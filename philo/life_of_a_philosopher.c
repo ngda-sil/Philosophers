@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   life_of_a_philosopher.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:18:55 by ngda-sil          #+#    #+#             */
-/*   Updated: 2022/05/24 23:23:18 by ngda-sil         ###   ########.fr       */
+/*   Updated: 2022/05/25 03:21:11 by tracy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 int	ft_eat(t_philo *p)
 {
 	p->t_last_meal = what_time_is_it(p->data);
+	p->nb_meal++;
 	if (print_log(p, EAT))
 		return (1);
 	usleep(p->data->t_eat * 1000);
-	p->nb_meal++;
 	return (0);
 }
 
@@ -52,7 +52,7 @@ int	ft_sleep(t_philo *p)
 
 int	ft_die(t_philo *p)
 {
-	if (p->is_alive == false)
+	if (p->is_alive == 0)
 		if (print_log(p, DEATH))
 			return (1);
 	return (0);

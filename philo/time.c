@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:01:00 by ngda-sil          #+#    #+#             */
-/*   Updated: 2022/05/24 23:23:20 by ngda-sil         ###   ########.fr       */
+/*   Updated: 2022/05/25 02:33:48 by tracy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	print_log(t_philo *p, char *str)
 {
 	if (pthread_mutex_lock(&p->data->print))
 		return (1);
-	printf(str, what_time_is_it(p->data), p->id);
+	printf(str, what_time_is_it(p->data), p->id, p->nb_meal);
 	if (pthread_mutex_unlock(&p->data->print))
 		return (1);
 	return (0);

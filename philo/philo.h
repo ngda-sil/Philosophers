@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:31:59 by tracy             #+#    #+#             */
-/*   Updated: 2022/05/24 23:23:22 by ngda-sil         ###   ########.fr       */
+/*   Updated: 2022/05/25 02:33:39 by tracy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@
 # define INIT "Problem initializing philosophers." 
 # define DATA "Problem data."
 # define SIM "Problem during simulation."
-# define LEFT "T : %.1fms | Philo n˚%d : has taken the left fork.\n"
-# define RIGHT "T : %.1fms | Philo n˚%d : has taken the right fork.\n"
-# define EAT "\033[0;32mT : %.1fms | Philo n˚%d : is eating.\033[0m\n"
-# define SLEEP "\033[0;36mT : %.1fms | Philo n˚%d : is sleeping.\033[0m\n"
-# define THINK "\033[0;35mT : %.1fms | Philo n˚%d : is thinking.\033[0m\n"
-# define DEATH "\033[1m\033[31mT : %.1fms | Philo n˚%d : DIED.\033[0m\n"
+# define LEFT "%.0fms | Philo n˚%d : has taken the left fork.\n"
+# define RIGHT "%.0fms | Philo n˚%d : has taken the right fork.\n"
+# define EAT "\033[0;32m%.0fms | Philo n˚%d : is eating his %d meal.\033[0m\n"
+# define SLEEP "\033[0;36m%.0fms | Philo n˚%d : is sleeping.\033[0m\n"
+# define THINK "\033[0;35m%.0fms | Philo n˚%d : is thinking.\033[0m\n"
+# define DEATH "\033[1m\033[31m%.0fms | Philo n˚%d : DIED.\033[0m\n"
 
 typedef struct s_data	t_data;
 
@@ -42,6 +42,7 @@ typedef struct s_philo
 	double			t_last_meal;
 	int				nb_meal;
 	int				is_alive;
+	int				is_full;
 	pthread_t		philo;
 	pthread_mutex_t	l_fork;
 	pthread_mutex_t	*r_fork;
@@ -58,6 +59,7 @@ typedef struct s_data
 	double			start;
 	double			now;
 	int				death;
+	int				full;
 	pthread_mutex_t	print;
 	t_philo			*p;
 }	t_data;
