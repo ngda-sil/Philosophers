@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   life_of_a_philosopher.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:18:55 by ngda-sil          #+#    #+#             */
-/*   Updated: 2022/05/25 03:21:11 by tracy            ###   ########.fr       */
+/*   Updated: 2022/06/04 00:38:47 by ngda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 int	ft_eat(t_philo *p)
 {
-	p->t_last_meal = what_time_is_it(p->data);
 	p->nb_meal++;
 	if (print_log(p, EAT))
 		return (1);
-	usleep(p->data->t_eat * 1000);
+	p->t_last_meal = what_time_is_it(p->data);
+	ft_usleep(p->data->t_eat, p->data);
+	if (p->nb_meal == p->data->nb_m_eat)
+		p->data->full++;
 	return (0);
 }
 
@@ -33,9 +35,7 @@ int	ft_fork(t_philo *p)
 	if (print_log(p, RIGHT))
 		return (1);
 	ft_eat(p);
-	if (pthread_mutex_unlock(&p->l_fork))
-		return (1);
-	if (pthread_mutex_unlock(p->r_fork))
+	if (pthread_mutex_unlock(&p->l_fork) || pthread_mutex_unlock(p->r_fork))
 		return (1);
 	return (0);
 }
@@ -44,16 +44,9 @@ int	ft_sleep(t_philo *p)
 {
 	if (print_log(p, SLEEP))
 		return (1);
-	usleep(p->data->t_sleep * 1000);
+	ft_usleep(p->data->t_sleep, p->data);
 	if (print_log(p, THINK))
 		return (1);
 	return (0);
 }
 
-int	ft_die(t_philo *p)
-{
-	if (p->is_alive == 0)
-		if (print_log(p, DEATH))
-			return (1);
-	return (0);
-}
