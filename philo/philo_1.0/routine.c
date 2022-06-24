@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 13:48:36 by ngda-sil          #+#    #+#             */
-/*   Updated: 2022/05/25 03:21:05 by tracy            ###   ########.fr       */
+/*   Updated: 2022/06/04 00:38:45 by ngda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ void	*routine(void *arg)
 
 	b = (void *)arg;
 	if (b->id % 2 != 0)
-		usleep(100);
-	while (42)
+		usleep(25000);
+	while (!b->data->death)
 	{
 		ft_fork(b);
+		if (b->data->nb_philo == b->data->full)
+			break;
 		ft_sleep(b);
 	}
 	return (NULL);
@@ -30,22 +32,20 @@ void	*routine(void *arg)
 int	is_everybody_alive(t_data *a)
 {
 	int		i;
-	double	now;
 
 	i = -1;
 	while (++i < a->nb_philo)
 	{
-		now = what_time_is_it(a);
-		if (now - a->p[i].t_last_meal >= a->t_death)
+		if (what_time_is_it(a) - a->p[i].t_last_meal >= a->t_death)
 		{
 			a->death = 1;
-			print_log(&a->p[i], DEATH);
 			if (pthread_mutex_lock(&a->print))
 				return (1);
-			return (0);
+			printf(DEATH, what_time_is_it(a), a->p[i].id);
+				return (0);
 		}
 	}
-	return(0);
+	return (0);
 }
 
 int	has_everybody_eaten(t_data *a)
@@ -74,14 +74,23 @@ int	start_sim(t_data *a)
 {
 	int			i;
 
-	start_timer(a);
 	i = -1;
+	start_timer(a);
 	while (++i < a->nb_philo)
+	{
 		if (pthread_create(&a->p[i].philo, NULL, &routine, &a->p[i]))
 			return (1);
+		
+	}
 	while (!a->death && a->full != a->nb_philo)
-		if(is_everybody_alive(a) || has_everybody_eaten(a))
+	{
+		/*if (a->nb_m_eat != -1)
+			if (has_everybody_eaten(a))
+				return (1);*/
+		if (is_everybody_alive(a))
 			return (1);
+		usleep(2500);
+	}
 	/*i = -1;
 	while (++i < a->nb_philo)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:31:59 by tracy             #+#    #+#             */
-/*   Updated: 2022/05/25 02:33:39 by tracy            ###   ########.fr       */
+/*   Updated: 2022/06/04 00:38:46 by ngda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@
 # define INIT "Problem initializing philosophers." 
 # define DATA "Problem data."
 # define SIM "Problem during simulation."
-# define LEFT "%.0fms | Philo n˚%d : has taken the left fork.\n"
-# define RIGHT "%.0fms | Philo n˚%d : has taken the right fork.\n"
-# define EAT "\033[0;32m%.0fms | Philo n˚%d : is eating his %d meal.\033[0m\n"
-# define SLEEP "\033[0;36m%.0fms | Philo n˚%d : is sleeping.\033[0m\n"
-# define THINK "\033[0;35m%.0fms | Philo n˚%d : is thinking.\033[0m\n"
-# define DEATH "\033[1m\033[31m%.0fms | Philo n˚%d : DIED.\033[0m\n"
+# define LEFT "%.1fms | Philo n˚%d : has taken the left fork.\n"
+# define RIGHT "%.1fms | Philo n˚%d : has taken the right fork.\n"
+# define EAT "\033[0;32m%.1fms | Philo n˚%d : is eating his %d meal.\033[0m\n"
+# define SLEEP "\033[0;36m%.1fms | Philo n˚%d : is sleeping.\033[0m\n"
+# define THINK "\033[0;35m%.1fms | Philo n˚%d : is thinking.\033[0m\n"
+# define DEATH "\033[1m\033[31m%.1fms | Philo n˚%d : DIED.\033[0m\n"
 
 typedef struct s_data	t_data;
 
@@ -77,6 +77,7 @@ int			start_sim(t_data *a);
 void		start_timer(t_data *a);
 double		what_time_is_it(t_data *a);
 int			print_log(t_philo *p, char *str);
+void		ft_usleep(double time, t_data *a);
 //utils
 int			ft_atoi(const char *str);
 int			ft_isdigit(int c);

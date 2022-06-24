@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tracy <tracy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 16:01:00 by ngda-sil          #+#    #+#             */
-/*   Updated: 2022/05/25 02:33:48 by tracy            ###   ########.fr       */
+/*   Updated: 2022/06/04 00:38:48 by ngda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,17 @@ int	print_log(t_philo *p, char *str)
 	if (pthread_mutex_unlock(&p->data->print))
 		return (1);
 	return (0);
+}
+
+void	ft_usleep(double time, t_data *a)
+{
+	double	zero;
+
+	zero = what_time_is_it(a);
+	while (!a->death)
+	{
+		usleep(50);
+		if (what_time_is_it(a) - zero >= time)
+			break ;
+	}
 }
