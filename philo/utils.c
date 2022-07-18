@@ -6,7 +6,7 @@
 /*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:54:58 by ngda-sil          #+#    #+#             */
-/*   Updated: 2022/07/18 17:18:48 by ngda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/18 23:54:33 by ngda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_isdigit(int c)
 
 int	str_error(char *s, int ret)
 {
-	printf("%s\n", s);
+	printf(RED"%s\n", s);
 	return (ret);
 }
 
@@ -41,10 +41,15 @@ long	atol_pos(char *str)
 void	ft_bzero(void *s, size_t n)
 {
 	char	*str;
+	int		i;
 
+	i = 0;
 	str = s;
 	while (n-- > 0)
-		*str++ = '\0';
+	{
+		str[0] = '\0';
+		i++;
+	}
 }
 
 void	*ft_calloc(size_t count, size_t size)

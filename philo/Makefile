@@ -3,35 +3,34 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tracy <tracy@student.42.fr>                +#+  +:+       +#+         #
+#    By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/05/13 15:37:13 by ngda-sil          #+#    #+#              #
-#    Updated: 2022/05/25 03:21:15 by tracy            ###   ########.fr        #
+#    Created: 2022/07/14 17:39:29 by ngda-sil          #+#    #+#              #
+#    Updated: 2022/07/18 19:27:52 by ngda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
 # ------------------------------------------------------------------------------
 
-NAME		= philo
-CC			= gcc
-CFLAGS 		=  -Wall -Wextra -Werror -g
-SRC 		=  	init.c \
-				life_of_a_philosopher.c \
-				main.c \
-				routine.c \
-				time.c \
-				utils.c \
-				utils2.c \
-				
-OBJ			= $(SRC:.c=.o)
+NAME			= philo
+CC				= gcc
+CFLAGS			= -Wall -Wextra -Werror -g
+SRC				= main.c \
+				  init.c \
+				  life_of_a_philosopher.c \
+				  routine.c \
+				  time.c \
+				  utils.c \
+				  c_du_propre.c
+OBJ				= $(SRC:.c=.o)
+
 # ==============================================================================
 
 
 all : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 
-clean :
+clean :	
 	rm -Rf $(OBJ)
 
 fclean : clean

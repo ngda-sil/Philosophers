@@ -6,7 +6,7 @@
 /*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:45:35 by ngda-sil          #+#    #+#             */
-/*   Updated: 2022/07/18 17:18:49 by ngda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/18 23:56:38 by ngda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 int	main(int ac, char **av)
 {
 	t_data	a;
-	
+
 	if (check_args(ac, av))
-		return (str_error(ARGS, 1));
-	if (init_data(ac, av, &a))
-		return (str_error(DATA, 1));
+		return (1);
+	init_data(ac, av, &a);
+	if (init_mutex(&a))
+		return (1);
 	if (init_philo(&a))
 	{
-		pthread_mutex_destroy(&a.print);
-		//destroy fork_mutex
-		return (str_error(INIT, 1));
+		clean(&a);
+		return (str_error("Problem initializing philos", 1));
 	}
-	if (start_sim(&a, a.p))
-		return (str_error(SIM, 1));
+	if (start_sim(&a))
+		return (str_error("Problem during simulation", 1));
 	return (0);
 }
