@@ -6,7 +6,7 @@
 /*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:43:45 by ngda-sil          #+#    #+#             */
-/*   Updated: 2022/07/15 18:54:27 by ngda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:18:51 by ngda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_data
 	int				death;
 	int				full;
 	pthread_t		checker;
+	pthread_mutex_t	state;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print;
 	t_philo			*p;

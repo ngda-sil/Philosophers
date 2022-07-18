@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngda-sil <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:54:58 by ngda-sil          #+#    #+#             */
-/*   Updated: 2022/07/14 19:03:48 by ngda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:18:48 by ngda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ long	atol_pos(char *str)
 	long	res;
 	int		i;
 
-	i = -1;
+	i = 0;
 	res = 0;
-	while (str[++i])
-		res = res * 10 + (str[i] - '0');
+	while (str[i])
+	{
+		res = res * 10 + (str[i] - 48);
+		i++;
+	}
 	return (res);
 }
 

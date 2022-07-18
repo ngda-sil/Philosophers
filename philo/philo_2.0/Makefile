@@ -6,7 +6,7 @@
 #    By: ngda-sil <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/14 17:39:29 by ngda-sil          #+#    #+#              #
-#    Updated: 2022/07/15 18:59:58 by ngda-sil         ###   ########.fr        #
+#    Updated: 2022/07/18 17:16:35 by ngda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME			= philo
 CC				= gcc
-CFLAGS			= -Wall -Wextra -Werror -g
+CFLAGS			= -Wall -Wextra -Werror
 SRC				= main.c \
 				  init.c \
 				  life_of_a_philosopher.c \
@@ -27,7 +27,7 @@ OBJ				= $(SRC:.c=.o)
 
 
 all : $(OBJ)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME) #-fsanitize=address
 
 clean :	
 	rm -Rf $(OBJ)

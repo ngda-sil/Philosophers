@@ -6,7 +6,7 @@
 /*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 20:42:10 by ngda-sil          #+#    #+#             */
-/*   Updated: 2022/07/15 20:29:18 by ngda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:18:50 by ngda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ void	*routine(void *arg)
 
 	b = (void *)arg;
 	if (b->id % 2 != 0)
-		usleep(b->data->t_eat / 2);
-	while (!b->data->death || b->data->nb_philo == b->data->full)
+		ft_usleep(b->data->t_eat, b->data);
+	while (b->data->nb_philo > b->data->full && !b->data->death)
 	{
-		ft_fork(b->data, b);
+		if (ft_fork(b->data, b))
+			break ;
 		ft_sleep(b);
 	}
 	return (NULL);
@@ -29,33 +30,23 @@ void	*routine(void *arg)
 
 void	*checker(void *arg)
 {
-	t_philo	*c;
-	t_data  *b;
+	t_data	*b;
 	int		i;
 	int		j;
 
-	c = arg;		
-	b = c->data;
+	b = (t_data *)arg;
 	i = 0;
 	j = -1;
-	while (1)
+	while (b->full < b->nb_philo && !b->death)
 	{
-		b->now = what_time_is_it(b);
-		if (( b->now - b->p[i].t_last_m) > b->t_death)
+		pthread_mutex_lock(&b->state);
+		if ((what_time_is_it(b) - b->p[i].t_last_m) > b->t_death)
 		{
+			//printf("philo(%d) : (%f)-(%f)=(%f) vs (%f)\n", b->p[i].id, what_time_is_it(b), b->p[i].t_last_m, (what_time_is_it(b) - b->p[i].t_last_m), b->t_death);
 			b->death = 1;
 			printf(DEATH, what_time_is_it(b), b->p[i].id);
-			break;
 		}
-		if (b->p[i].nb_meal == b->nb_m_eat && !b->p[i].full)
-		{
-			b->full++;
-			b->p[i].full = 1;
-		}
-		if (b->nb_philo == b->full)
-		{
-			break;
-		}
+		pthread_mutex_unlock(&b->state);
 		i++;
 		if (i == b->nb_philo)
 			i = 0;
@@ -63,10 +54,21 @@ void	*checker(void *arg)
 	return (NULL);
 }
 
+void	destroy_the_mutexes(t_data *a)
+{
+	int	i;
+
+	i = -1;
+	pthread_mutex_destroy(&a->print);
+	pthread_mutex_destroy(&a->state);
+	while (++i < a->nb_philo)
+		pthread_mutex_destroy(&a->fork[i]);
+}
+
 int	start_sim(t_data *a, t_philo *p)
 {
 	(void)p;
-	int			i;
+	int	i;
 
 	i = -1;
 	start_timer(a);
@@ -75,14 +77,14 @@ int	start_sim(t_data *a, t_philo *p)
 		if (pthread_create(&a->p[i].philo, NULL, &routine, &a->p[i]))
 			return (1);
 	}
-	if (pthread_create(&a->checker, NULL, &checker, &a->p[0]))
-			return (1);
+	if (pthread_create(&a->checker, NULL, &checker, a))
+		return (1);
 	i = -1;
 	while (++i < a->nb_philo)
-		pthread_join(a->p[i].philo, NULL);	
+		pthread_join(a->p[i].philo, NULL);
 	pthread_join(a->checker, NULL);
+	destroy_the_mutexes(a);
 	free(a->fork);
 	free(a->p);
-	// destroy mutex
 	return (0);
 }

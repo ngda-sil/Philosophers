@@ -6,7 +6,7 @@
 /*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:45:35 by ngda-sil          #+#    #+#             */
-/*   Updated: 2022/07/15 20:29:21 by ngda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:18:49 by ngda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int ac, char **av)
 {
 	t_data	a;
-
+	
 	if (check_args(ac, av))
 		return (str_error(ARGS, 1));
 	if (init_data(ac, av, &a))

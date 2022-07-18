@@ -6,7 +6,7 @@
 /*   By: ngda-sil <ngda-sil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 20:43:08 by ngda-sil          #+#    #+#             */
-/*   Updated: 2022/07/15 20:29:20 by ngda-sil         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:53:39 by ngda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ double	what_time_is_it(t_data *a)
 
 int	print_log(t_philo *p, char *str)
 {
-	if (!p->data->death)	
+	pthread_mutex_lock(&p->data->state);
+	if (p->data->full < p->data->nb_philo && !p->data->death)
 	{
 		if (pthread_mutex_lock(&p->data->print))
 			return (1);
@@ -39,6 +40,7 @@ int	print_log(t_philo *p, char *str)
 		if (pthread_mutex_unlock(&p->data->print))
 			return (1);
 	}
+	pthread_mutex_unlock(&p->data->state);
 	return (0);
 }
 
